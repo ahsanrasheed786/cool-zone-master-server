@@ -15,8 +15,8 @@ app.use(cors(
     }
 ));
 mongoose.connect('mongodb://localhost:27017/your-database-name', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
 });
 
 app.post('/api/contact', contactController.createContact);

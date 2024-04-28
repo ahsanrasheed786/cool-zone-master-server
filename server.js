@@ -26,7 +26,7 @@ app.use(cors(
 const connectDB = async () => {
   try {
    const conn = await mongoose.connect(mongodb);
-    console.log(`MongoDB connected successfully with Database : ${dbUrl} and with host: ${conn.connection.host}`);
+    console.log(`MongoDB connected successfully with Database : ${dbUrl} and with host: ${conn.connection.host} ${frontendUrl}`);
   } catch (err) {
     console.error(err.message);
     process.exit(1);

@@ -11,6 +11,18 @@ const scheduleSchema = new mongoose.Schema({
 
 const ScheduledService = mongoose.model('ScheduledService', scheduleSchema);
 
+
+const deletedScheduleSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  service: { type: String, required: true },
+  date: { type: Date, required: true },
+  time: { type: String, required: true },
+});
+
+const deletedScheduledService = mongoose.model('ScheduledService', deletedScheduleSchema);
+
 export const createSchedule = async (req, res) => {
   try {
     const { name, email, phone, service, date, time } = req.body;
@@ -30,3 +42,18 @@ export const getScheduledServices = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deleteScheduledService = async (req, res) => {
+  const {id}=req.params
+// console.log(id)
+  try {
+    const deletedService = await ScheduledService.findByIdAndDelete(id);
+    if (!deletedService) {
+      return res.status(404).json({ message: 'Contact not found' });
+    }
+    const deleted = new deletedScheduledService(deletedService);
+    await deleted.save();
+    res.status(201).json({ message: 'Service form submitted successfully' });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }}

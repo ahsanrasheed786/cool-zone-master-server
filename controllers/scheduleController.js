@@ -21,7 +21,7 @@ const deletedScheduleSchema = new mongoose.Schema({
   time: { type: String, required: true },
 });
 
-const deletedScheduledService = mongoose.model('ScheduledService', deletedScheduleSchema);
+const deletedScheduledService = mongoose.model('DeletedScheduledService', deletedScheduleSchema);
 
 export const createSchedule = async (req, res) => {
   try {

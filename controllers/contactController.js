@@ -21,7 +21,7 @@ const deletedContactSchema = new mongoose.Schema({
   message: { type: String },
 });
 
-const DeletedContact = mongoose.model('Contact', deletedContactSchema);
+const DeletedContact = mongoose.model('DeletedContact', deletedContactSchema);
 
 export const createContact = async (req, res) => {
   try {

@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const contactSchema = new mongoose.Schema({
-  name: { type: String},
-  email: { type: String,},
-  phone: { type: String},
-  address: { type: String},
-  userLocation: { type: String},
-  message: { type: String},
+  name: { type: String },
+  email: { type: String },
+  phone: { type: String },
+  address: { type: String },
+  userLocation: { type: String },
+  message: { type: String },
 });
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-exports.createContact = async (req, res) => {
+export const createContact = async (req, res) => {
   try {
     const { name, email, phone, address, userLocation, message } = req.body;
     const newContact = new Contact({ name, email, phone, address, userLocation, message });
@@ -22,7 +22,7 @@ exports.createContact = async (req, res) => {
   }
 };
 
-exports.getContactSubmissions = async (req, res) => {
+export const getContactSubmissions = async (req, res) => {
   try {
     const submissions = await Contact.find();
     res.status(200).json(submissions);

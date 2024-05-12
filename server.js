@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { createContact, getContactSubmissions } from './controllers/contactController.js';
-import { createSchedule, getScheduledServices } from './controllers/scheduleController.js';
+import { createContact, deleteContact, getContactSubmissions } from './controllers/contactController.js';
+import { createSchedule, deleteScheduledService, getScheduledServices } from './controllers/scheduleController.js';
 import { login, signup } from './controllers/userController.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -34,8 +34,12 @@ connectDB();
 
 app.post('/api/contact', createContact);
 app.get('/api/contact', getContactSubmissions);
+app.delete('/api/contact/:id', deleteContact);
+
 app.post('/api/schedule', createSchedule);
 app.get('/api/schedule', getScheduledServices);
+app.delete('/api/schedule/:id', deleteScheduledService);
+
 
 app.post('/api/login', login);
 app.post('/api/signup', signup);

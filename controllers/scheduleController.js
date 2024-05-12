@@ -9,6 +9,7 @@ const scheduleSchema = new mongoose.Schema({
   time: { type: String, required: true },
 });
 
+
 const ScheduledService = mongoose.model('ScheduledService', scheduleSchema);
 
 

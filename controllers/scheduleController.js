@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const scheduleSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -11,7 +11,7 @@ const scheduleSchema = new mongoose.Schema({
 
 const ScheduledService = mongoose.model('ScheduledService', scheduleSchema);
 
-exports.createSchedule = async (req, res) => {
+export const createSchedule = async (req, res) => {
   try {
     const { name, email, phone, service, date, time } = req.body;
     const newSchedule = new ScheduledService({ name, email, phone, service, date, time });
@@ -22,9 +22,7 @@ exports.createSchedule = async (req, res) => {
   }
 };
 
-exports.getScheduledServices = async (req, res) => {
-    // console.log(req)
-    
+export const getScheduledServices = async (req, res) => {
   try {
     const scheduledServices = await ScheduledService.find();
     res.status(200).json(scheduledServices);

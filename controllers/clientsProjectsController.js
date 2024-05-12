@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const clientProjectSchema = new mongoose.Schema({
   type: { type: String, required: true, enum: ['Client', 'Project'] },
@@ -8,7 +8,7 @@ const clientProjectSchema = new mongoose.Schema({
 
 const ClientProject = mongoose.model('ClientProject', clientProjectSchema);
 
-exports.getClientsAndProjects = async (req, res) => {
+export const getClientsAndProjects = async (req, res) => {
   try {
     const clientsAndProjects = await ClientProject.find();
     res.status(200).json(clientsAndProjects);
@@ -17,7 +17,7 @@ exports.getClientsAndProjects = async (req, res) => {
   }
 };
 
-exports.createClientProject = async (req, res) => {
+export const createClientProject = async (req, res) => {
   try {
     const { type, name, description } = req.body;
     const newClientProject = new ClientProject({ type, name, description });
